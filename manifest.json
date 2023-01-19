@@ -1,0 +1,23 @@
+{
+  "name": "getUserMedia mutes the tab",
+  "version": "1.0.0",
+  "description": "Reproduces the bug where starting tabCapture mutes the tab sound",
+  "permissions": ["storage", "activeTab", "tabCapture"],
+  "host_permissions": ["*://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["jquery.js", "main.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {},
+  "web_accessible_resources": [{
+    "resources": ["/iframe.html"],
+    "matches": ["<all_urls>"]
+  }],
+  "manifest_version": 3
+}

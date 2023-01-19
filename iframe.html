@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+	<script src="jquery.js"></script>
+	<script src="iframe.js"></script>
+	
+	<style>
+		BODY { padding: 10px }
+	</style>
+</head>
+<body>
+	This iframe could be hidden. It's used to get an audio stream ID which will be passed back to the content script.
+	The stream ID will then be passed to getUserMedia by the content script and audio recording will start.
+
+	<div style="margin-top: 10px">Use the extension button to start capturing. Click it again to download the recorded audio.</div>
+</body>
+</html>
