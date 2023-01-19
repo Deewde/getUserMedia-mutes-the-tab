@@ -30,15 +30,17 @@ function runOnStart() {
 }
 
 function startRecording(tabStreamId) {
+	// Can be `tab`, `desktop` or `system`. desktop and system crash the page
+	const mediaSourceType = 'tab';
 	const umOptions = {
 		audio: {
 			mandatory: {
-				chromeMediaSource: 'tab',
+				chromeMediaSource: mediaSourceType,
 				chromeMediaSourceId: tabStreamId
 			}
 		}
 	}
-	
+	console.log('Trying to start getUserMedia using `'+mediaSourceType+'` stream ID', tabStreamId);
 	navigator.mediaDevices.getUserMedia(umOptions).then((tabStream) => {
 		activeStream = tabStream;
 		
