@@ -14,12 +14,12 @@ function runOnStart() {
 		}
 	}, false);
 	
-	$('BODY').append('<iframe id="the_frame" src="' + chrome.runtime.getURL('/iframe.html') + '" style="position: fixed; top: 20px; right: 20px; width: 400px; z-index: 2147483647; border-radius: 16px; box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); border: none; background-color: #FAFAFA;"></iframe>');
+	document.getElementsByTagName('BODY')[0].innerHTML += '<iframe id="the_frame" src="' + chrome.runtime.getURL('/iframe.html') + '" style="position: fixed; top: 20px; right: 20px; width: 400px; z-index: 2147483647; border-radius: 16px; box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); border: none; background-color: #FAFAFA;"></iframe>';
 	
 	chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 		switch (message.type) {
 			case 'startChain':
-				$('#the_frame')[0].contentWindow.postMessage({type: 'getStreamId', tabId: message.tabId}, '*');
+				document.getElementById('the_frame').contentWindow.postMessage({type: 'getStreamId', tabId: message.tabId}, '*');
 				break;
 			case 'stopChain':
 				mediaRecorder.stop();
